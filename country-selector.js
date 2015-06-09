@@ -4,7 +4,7 @@ angular.module('directive.countrySelector', [])
     return {
         scope: {
             ngModel: '=',
-            onSelected: '&',
+            onSelect: '&',
         },
         replace: true,
         require: '^ngModel',
@@ -46,7 +46,8 @@ angular.module('directive.countrySelector', [])
                 scope.isOpen = false;
                 scope.search = '';
                 ngModelCtrl.$setViewValue(countryCode.isoCode);
-                scope.onSelected(countryCode);
+                // http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
+                scope.onSelect()(countryCode.isoCode, countryCode.name);
             };
         }
     };
