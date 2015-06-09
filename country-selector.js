@@ -47,7 +47,10 @@ angular.module('directive.countrySelector', [])
                 scope.search = '';
                 ngModelCtrl.$setViewValue(countryCode.isoCode);
                 // http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-3-isolate-scope-and-function-parameters
-                scope.onSelect()(countryCode.isoCode, countryCode.name);
+                var fn = scope.onSelect();
+                if (fn) {
+                    fn(countryCode.isoCode, countryCode.name);
+                }
             };
         }
     };
