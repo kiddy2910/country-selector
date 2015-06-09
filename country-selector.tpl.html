@@ -1,0 +1,17 @@
+<div ng-class="{'open': isOpen}" class="country-selector btn-group">
+    <button ng-click="showDropDown()" type="button" class="btn btn-default dropdown-toggle" aria-expanded="false">
+        {{ selectedCountry.name }} <span class="caret"></span>
+    </button>
+    <div class="dropdown-menu" role="menu">
+        <div class="searchbox">
+            <input ng-model="search" class="form-control" type="text">
+        </div>
+        <ul>
+            <li ng-repeat="cc in filteredCodes = (CountryCodes | filter:search)"
+                ng-class="{'selected': cc.isoCode === selectedCountry.isoCode}">
+                <a ng-click="chooseCountry(cc)" href="javascript:void(0)">{{ cc.name }}</a>
+            </li>
+            <li ng-if="filteredCodes.length === 0" class="norecord">No record found</li>
+        </ul>
+    </div>
+</div>
